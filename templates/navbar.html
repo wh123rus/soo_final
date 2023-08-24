@@ -1,31 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-    <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">밥 먹자 밥</span>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+    <span class="navbar-brand mx-3 mb-0 font-weight-bold">미니언즈</span>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" id="navbarSupportedContent" style>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item mx-1 btn btn-primary">
+            <li class="nav-item mx-1 btn btn-secondary">
                 <a class="nav-link text-white" href="/">메인</a>
             </li>
-            <li class="nav-item mx-1 btn btn-primary">
+            <li class="nav-item mx-1 btn btn-secondary">
                 <a class="nav-link text-white" href="/menu/">메뉴</a>
             </li>
-            <li class="nav-item mx-1 btn btn-primary">
+            <li class="nav-item mx-1 btn btn-secondary">
                 <a class="nav-link text-white" href="/restaurant/">식당</a>
             </li>
-            <li class="nav-item mx-1 btn btn-primary">
+            <li class="nav-item mx-1 btn btn-secondary">
                 <a class="nav-link text-white" href="/restaurant/">식당 계정</a>
             </li>
-            <li class="nav-item mx-1 btn btn-primary">
+            <li class="nav-item mx-1 btn btn-secondary">
                 <a class="nav-link text-white" href="/restaurant/">관리자 계정</a>
             </li>
         </ul>
-        <form class="form-inline my-2" action="" method="post"> <input type="hidden" name="csrfmiddlewaretoken" value="vRkAsrc5DZEWBqKfVSb6oJgaro0qWtFw71XyWk0shwsRNlMFT3rn8tBehC4UnA6g">
-            <input class="form-control mr-sm-2" type="search" placeholder="global search" name="search_word">
-        </form>
         <ul class="navbar-nav ml-5 mr-5">
-            <li class="nav-item dropdown mx-1 btn btn-primary">
+            <li class="nav-item dropdown mx-1 btn btn-secondary">
                 <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
             	    <i class="fas fa-user" aria-hidden="true"></i>
                     {% if user.is_authenticated %}
