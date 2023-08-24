@@ -4,20 +4,19 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>register.html</title>
+        <title>회원가입</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     </head>
-    
     <body style="padding-top: 90px;">
         {% include 'navbar.html' %}
         <div class="container">
             <h1>New User Registration</h1>
             <p class="font-italic">Please enter your username and password twice.</p>
-            {% include "form_errors.html" %}
             <form action="." method="post" class="card pt-3">
                 {% csrf_token %}
+                {% include "form_errors.html" %}
                 <div class="form-group row">
-                    <label class="col-form-label col-sm-3 ml-3 font-weight-bold" for="id_username">Username:</label>
+                    <label class="col-form-label col-sm-3 ml-3 font-weight-bold" for="id_username">Restaurant name:</label>
                     <div class="col-sm-5">
                         <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" class="form-control" required="" id="id_username">
                     </div>

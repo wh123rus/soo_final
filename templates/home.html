@@ -5,12 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
-    <title>미니언즈</title>
+    <title>미니언즈 식단</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body style="padding-top:90px;">
     {% include 'navbar.html' %}
-
+    <h1>Today's Menu</h1>
+    <ul>
+        {% for menu in today_menu %}
+            <li>
+                <p>Restaurant {{ menu.restaurant.restaurant_name }}</p>
+                <p>{{ menu.menu_name }}</p>
+            </li>
+        {% empty %}
+            <li>오늘은 쉬는 날</li>
+        {% endfor %}
+    </ul>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

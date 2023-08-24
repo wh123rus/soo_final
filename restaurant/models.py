@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Avg
+from django.utils import timezone
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
@@ -16,7 +17,7 @@ class Menu(models.Model):
     menu_id = models.AutoField(primary_key=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     menu_name = models.CharField(max_length=500)
-    date = models.DateField()
+    created_at = models.DateTimeField(default=timezone.now)
 
 class Food(models.Model):
     food_id = models.AutoField(primary_key=True)
