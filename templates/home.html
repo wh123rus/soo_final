@@ -11,22 +11,16 @@
 <body style="padding-top:90px;">
     {% include 'navbar.html' %}
     <h1>Today's Menu</h1>
-    <ul>
-        {% for menu in today_menu %}
-            <li>
-                <p>Restaurant {{ menu.restaurant.restaurant_name }}</p>
-                <p>{{ menu.menu_name }}</p>
-            </li>
-        {% empty %}
-            <li>오늘은 쉬는 날</li>
+    <ul style="padding: 80px;">
+        {% for menu in menu %}
+            <h2 class="font-weight-bold"><a href="/rest/{{ restaurant.id }}/">{{menu.restaurant.restaurant_name }}</a></h2>
+            <p>{{ menu.menu_name }}</p>
         {% endfor %}
     </ul>
-    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/c998a172fe.js"></script>
     <style media="all" id="fa-v4-shims"></style>
-
 </body>
 </html>
