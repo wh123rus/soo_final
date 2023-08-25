@@ -13,7 +13,7 @@
     <h1>Today's Menu</h1>
     <ul style="padding: 80px;">
         {% for menu in menu %}
-            <h2 class="font-weight-bold"><a href="/rest/{{ restaurant.id }}/">{{menu.restaurant.restaurant_name }}</a></h2>
+            <h2 class="font-weight-bold"><a href="/menu/{{ menu.id }}/">{{menu.restaurant.restaurant_name }}</a></h2>
             <p>{{ menu.menu_name }}</p>
         {% endfor %}
     </ul>
