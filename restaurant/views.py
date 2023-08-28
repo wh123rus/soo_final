@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Restaurant, Menu, Food, Review, SuggestionBoard
+from .models import Restaurant, Menu, Review, SuggestionBoard
 from django.utils import timezone
 
 def home(request):
