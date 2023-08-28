@@ -8,7 +8,7 @@ def home(request):
     menu = Menu.objects.filter(created_at=today)
     context = {
         'restaurant_name' : restaurant_name,
-        'menu' : menu
+        'menus' : menu
     }
     return render(request, 'home.html', context)
 
@@ -22,4 +22,3 @@ def home(request):
 #         'review' : review,        
 #     }
 #     return render(request, 'menu_detail.html', context)
-    

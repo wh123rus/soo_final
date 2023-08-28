@@ -29,19 +29,6 @@ class Menu(models.Model):
             average_rating = round(average_rating, 2)
         return average_rating
 
-# class Food(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
-#     food_name = models.CharField(max_length=20)
-#     rating = models.FloatField()
-    
-#     def __str__(self):
-#         return self.food_name
-    
-#     def calculate_average_rating():
-#         average_rating = Food.objects.aggregate(Avg('rating')) ['rating_avg']
-#         return average_rating
-
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
