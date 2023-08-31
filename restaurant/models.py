@@ -14,9 +14,16 @@ class Restaurant(models.Model):
 
 class Menu(models.Model):
     id = models.AutoField(primary_key=True)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default='')
     menu_name = models.CharField(max_length=150)
     created_at = models.DateField(default=timezone.now)
+    
+
+class Review(models.Model):
+    id = models.AutoField(primary_key=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    review_text = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
     rating = models.FloatField(default=0, blank=True)
     
     def __str__(self):
@@ -28,12 +35,6 @@ class Menu(models.Model):
         if average_rating is not None:
             average_rating = round(average_rating, 2)
         return average_rating
-
-class Review(models.Model):
-    id = models.AutoField(primary_key=True)
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
-    review_text = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
 
 class SuggestionBoard(models.Model):
     id = models.AutoField(primary_key=True)

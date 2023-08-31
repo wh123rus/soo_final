@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
+<div class="container text-center" style='width:1000px'>
     <div>
     <form name="myform" id="myform" method="post">
+        {% csrf_token %}
         <fieldset>
-            <legend class="font-weight-bold container mt-5 text-left" style='width:500px'>별점 등록</legend>
+            <legend class="font-weight-bold container mt-5 text-left" style='width:500px'>Review</legend>
             <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
             <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
             <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
             <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
             <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
         </fieldset>
-    </form>
-    </div>
-    <div>
     
+    {{ form.review_text }}
     </div>
+    <div class="text-lg-end text-right">
+    <button type="submit" class="btn btn-success">리뷰 등록</button>
+    </div>
+    </form>
 </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
