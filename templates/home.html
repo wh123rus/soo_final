@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Today's Menu</h1>
-    <!-- <div class="position-absolute top-100 start-100 translate-middle text-center"> -->
     <div class="container text-center" style='width:1000px'>
     <ul style="padding: 80px;">
         {% for menu in menus %}
-            <h2 class="font-weight-bold"><a href="/menu/{{ menu.id }}/">{{ menu.restaurant.restaurant_name }}</a></h2>
+            <h2 class="font-weight-bold"><a href="{% url 'restaurant:restaurant_detail' menu.id %}">{{ menu.restaurant.restaurant_name }}</a></h2>
             <div class="rate">
                 <span style="width: 50%">별점 {{ menu.rating }}</span>
             </div>
@@ -13,11 +12,4 @@
         {% endfor %}
     </ul>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/c998a172fe.js"></script>
-    <style media="all" id="fa-v4-shims"></style>
-</body>
-</html>
 {% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5 text-left" style='width:500px'>
+    <div>
+        <h1 class="font-weight-bold">{{ restaurants }}</h1>
+        <h3 style="margin-top: 30px;">{{ restaurants.location }}</h3>
+    </div>
+
+    {% comment %} <h1>{{ restaurant.restaurant_name }}</h1> {% endcomment %}
+    <div>
+        {% for reviews in reviews %}
+        <table class="table">
+            <tr>
+                <td>{{ rating }}</td>
+            </tr>
+            <tr>
+                <td>Review</td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+    {% comment %} class Menu(models.Model):
+    id = models.AutoField(primary_key=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    menu_name = models.CharField(max_length=150)
+    created_at = models.DateField(default=timezone.now)
+    rating = models.FloatField(default=0, blank=True)
+    
+    def __str__(self):
+        return self.menu_name
+    
+    @staticmethod
+    def calculate_average_rating():
+        average_rating = Menu.objects.aggregate(Avg('rating')) ['rating_avg']
+        if average_rating is not None:
+            average_rating = round(average_rating, 2)
+        return average_rating
+
+class Review(models.Model):
+    id = models.AutoField(primary_key=True)
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    review_text = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now) {% endcomment %}
+<div class="text-lg-end text-right">
+    <a href="{% url 'restaurant:restaurant_review' %}" class="btn btn-success">리뷰 작성하기</a>
+</div>
+{% endblock %}
+
+
+
