@@ -5,6 +5,7 @@
     <ul style="padding: 80px;">
         {% for menu in menus %}
             <h2 class="font-weight-bold"><a href="{% url 'restaurant:restaurant_detail' menu.id %}">{{ menu.restaurant.restaurant_name }}</a></h2>
+            <br>
             <div class="rate">
                 <span style="width: 50%">별점 {{ menu.rating }}</span>
             </div>

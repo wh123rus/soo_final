@@ -1,0 +1,14 @@
+{% block content %}
+
+{% if reviews %}
+    <ul>
+    {% for reviews in reviews %}
+        <li><a>{{ review.review_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>리뷰가 없습니다.</p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,4 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div>
+    <div>
+    <form name="myform" id="myform" method="post">
+        <fieldset>
+            <legend class="font-weight-bold container mt-5 text-left" style='width:500px'>별점 등록</legend>
+            <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+            <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+            <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+            <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+            <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+        </fieldset>
+    </form>
+    </div>
+    <div>
+    
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/c998a172fe.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style media="all" id="fa-v4-shims"></style>
+    <style>
+        #myform fieldset{
+            display: inline-block;
+            border: 0;
+        }
+        #myform input[type=radio]{
+            display: none;
+        }
+        #myform label{
+            font-size: 3em;
+            color: transparent;
+            text-shadow: 0 0 0 #f0f0f0;
+        }
+        #myform label:hover{
+            text-shadow: 0 0 0 #ffff00 ; /* 마우스 호버 */
+        }
+        #myform label:hover ~ label{
+            text-shadow: 0 0 0 #ffff00 ; /* 마우스 호버 뒤에오는 이모지들 */
+        }
+        #myform fieldset{
+            display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+            direction: rtl; /* 이모지 순서 반전 */
+            border: 0; /* 필드셋 테두리 제거 */
+        }
+        #myform fieldset legend{
+            text-align: left;
+        }
+        #myform input[type=radio]:checked ~ label{
+            text-shadow: 0 0 0 #ffff00 ; /* 마우스 클릭 체크 */
+        }
+    </style>
 {% endblock %}

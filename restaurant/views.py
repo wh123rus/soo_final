@@ -16,16 +16,23 @@ def home(request):
 def restaurant_detail(request, restaurant_id):
     restaurants = Restaurant.objects.get(id=restaurant_id)
     location = Restaurant.objects.all()
-    rating = Restaurant.objects.all()
-    reviews = Review.objects.all()
+    event = Restaurant.objects.all()
+    rating = Menu.objects.all()
+    reviews = Review.objects.order_by('-created_at') # 이거 바꿈. 원래는 all()
     context = {
         'restaurants': restaurants,
         'location' : location,
-        'rating' : rating,
-        'reviews' : reviews
+        'event' : event,
+        'reviews' : reviews,
+        'rating' : rating
         }
     return render(request, 'restaurant_detail.html', context)
 
+# class Review(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+#     review_text = models.TextField()
+#     created_at = models.DateTimeField(default=timezone.now)
 
 def restaurant_review(request):
     rating = Restaurant.objects.all()
@@ -36,25 +43,3 @@ def restaurant_review(request):
     }
     return render(request, 'restaurant_review.html', context)
 
-# class Menu(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-#     menu_name = models.CharField(max_length=150)
-#     created_at = models.DateField(default=timezone.now)
-#     rating = models.FloatField(default=0, blank=True)
-    
-#     def __str__(self):
-#         return self.menu_name
-    
-#     @staticmethod
-#     def calculate_average_rating():
-#         average_rating = Menu.objects.aggregate(Avg('rating')) ['rating_avg']
-#         if average_rating is not None:
-#             average_rating = round(average_rating, 2)
-#         return average_rating
-
-# class Review(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
-#     review_text = models.TextField()
-#     created_at = models.DateTimeField(default=timezone.now)
