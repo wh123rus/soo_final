@@ -15,17 +15,21 @@ def home(request):
         'restaurant_name' : restaurant_name,
         'menus': menus,
     }
-    avg_ratings = {}  
+    avg_ratings = {}
     for restaurant in restaurant_name:
-        reviews = Review.objects.filter(restaurant=restaurant)
-        total_rating = 0
-        count = 0
-        for review in reviews:
-            total_rating += review.rating
-            count += 1
-        if count > 0:
-            avg_rating = round(total_rating / count, 2)
-            avg_ratings[restaurant.id] = avg_rating
+        menu = Menu.objects.filter(restaurant=restaurant, date=today)
+        if menu:
+            reviews = Review.objects.filter(restaurant=restaurant)
+            total_rating = 0
+            count = 0
+            for review in reviews:
+                total_rating += review.rating
+                count += 1
+            if count > 0:
+                avg_rating = round(total_rating / count, 2)
+                avg_ratings[restaurant.id] = avg_rating
+            else:
+                avg_ratings[restaurant.id] = 0.0
         else:
             avg_ratings[restaurant.id] = 0.0
 
