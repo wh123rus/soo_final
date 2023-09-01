@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center">
+  <h2>식당 메뉴 추가</h2>
+  {% include "form_errors.html" %}
+  <form method="post">
+    {% csrf_token %}
+    
+    <!-- 식당 입력 -->
+    <div class="form-group row">
+        <label for="restaurant" class="col-form-label col-sm-3 ml-3 font-weight-bold">식당:</label>
+        <div>
+            {{ form.restaurant }}
+        </div>
+    </div>
+
+    <!-- 날짜 입력 -->
+    <div class="form-group row">
+        <label for="date" class="col-form-label col-sm-3 ml-3 font-weight-bold">날짜:</label>
+        {{ form.date }}
+    </div>
+
+    <!-- 메뉴 입력 -->
+    <div class="form-group row">
+        <label for="menu_name" class="col-form-label col-sm-3 ml-3 font-weight-bold">메뉴:</label>
+        <div>
+            {{ form.menu_name }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

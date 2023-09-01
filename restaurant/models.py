@@ -16,7 +16,7 @@ class Menu(models.Model):
     id = models.AutoField(primary_key=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default='')
     menu_name = models.CharField(max_length=150)
-    created_at = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.now)
     
 
 class Review(models.Model):

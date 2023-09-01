@@ -1,31 +1,61 @@
 {% extends 'base.html' %}
 {% block content %}
-
+ 
 <div class="container mt-5 text-left" style='width:500px'>
     <div>
-        <h1 class="font-weight-bold">{{ restaurants.restaurant_name }}</h1>
-        <h3 style="margin-top: 30px;">{{ restaurants.location }}</h3>
-        <h3 style="margin-top: 30px;">{{ restaurants.event }}</h3>
+        <h1 class="font-weight-bold">{{ restaurant.restaurant_name }}</h1>
+        <h3 style="margin-top: 30px;">{{ restaurant.location }}</h3>
+        <h3 style="margin-top: 30px;">{{ restaurant.event }}</h3>
+        <hr>
     </div>
 
-    {% comment %} <h1>{{ restaurant.restaurant_name }}</h1> {% endcomment %}
-    <div>
-        {% for reviews in reviews %}
-        <table class="table">
-            <tr>
-                <td>{{ menu.rating }}</td>
-            </tr>
-            <tr>
-                <td>{% include 'review_list.html' %}</td>
-            </tr>
-        </table>
-    </div>
-    {% endfor %}
+    {% if reviews %}
+        <div>
+            {% for review in reviews %}
+                <p>
+                    {{ review.stars }}
+                </p>
+                <p>{{ review.review_text }}</p>
+            <hr>
+            {% endfor %}
+        </div>
+    {% else %}
+        <br><br><br>
+        <h3>리뷰가 없습니다.</h3>
+    {% endif %}
     
-<div class="text-lg-end text-right">
-    <a href="{% url 'restaurant:restaurant_review' restaurant.id %}" class="btn btn-success">리뷰 작성하기</a>
+    <div class="text-right" style="margin-bottom: 50px;">
+        <a href="{% url 'restaurant:restaurant_review' restaurant.id %}" class="btn btn-success">리뷰 작성하기</a>
+    </div>
 </div>
+
+
+
+
+{% comment %} <div class="container mt-5 text-left" style='width:500px'>
+    <div>
+        <h1 class="font-weight-bold">{{ restaurant.restaurant_name }}</h1>
+        <h3 style="margin-top: 30px;">{{ restaurant.location }}</h3>
+        <h3 style="margin-top: 30px;">{{ restaurant.event }}</h3>
+        <hr>
+    </div>
+
+    {% if reviews %}
+        <div>
+            {% for review in reviews %}
+            <hr>
+                <p>{{ review.rating }}</p>
+                <p>{{ review.review_text }}</p>
+            <hr>
+            {% endfor %}
+        </div>
+    {% else %}
+        <br><br><br>
+        <h3>리뷰가 없습니다.</h3>
+    {% endif %}
+    
+    <div class="text-right">
+        <a href="{% url 'restaurant:restaurant_review' restaurant.id %}" class="btn btn-success">리뷰 작성하기</a>
+    </div>
+</div> {% endcomment %}
 {% endblock %}
-
-
-
