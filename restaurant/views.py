@@ -3,17 +3,33 @@ from .models import Restaurant, Menu, Review
 from django.utils import timezone
 from restaurant.forms import RatingForm
 from django.urls import reverse
+from django.db.models import Avg
 
 def home(request):
     # restaurants = Restaurant.objects.get(id=restaurant_id)
     today = timezone.now().date()
     restaurant_name = Restaurant.objects.all()
-    menu = Menu.objects.filter(date=today)
+    menus = Menu.objects.filter(date=today)
     context = {
         # 'restaurants': restaurants,
         'restaurant_name' : restaurant_name,
-        'menus' : menu
+        'menus': menus,
     }
+    avg_ratings = {}  
+    for restaurant in restaurant_name:
+        reviews = Review.objects.filter(restaurant=restaurant)
+        total_rating = 0
+        count = 0
+        for review in reviews:
+            total_rating += review.rating
+            count += 1
+        if count > 0:
+            avg_rating = round(total_rating / count, 2)
+            avg_ratings[restaurant.id] = avg_rating
+        else:
+            avg_ratings[restaurant.id] = 0.0
+
+    context['avg_ratings'] = avg_ratings
     return render(request, 'home.html', context)
 
 
