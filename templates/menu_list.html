@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 style="margin-top: 30px;">메뉴 목록</h3>
+{% if restaurants %}
+{% for restaurant in restaurants %}
+    <h2 class="font-weight-bold">
+        {{ restaurant.restaurant_name }}
+    </h2>
+    <hr>
+    <div class="menu-list">
+        {% for menu in menu_list %}
+            {% if menu.restaurant_id == restaurant.id %}
+                <div class="menu-item">
+                    <div class="menu-date">{{ menu.date }}</div>
+                    <div class="menu-name">{{ menu.menu_name|linebreaksbr }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <hr style="border-width:3px 0 0 0; border-color:#ccc;">
+{% endfor %}
+{% endif %}
+
+{% endblock %}

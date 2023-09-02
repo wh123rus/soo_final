@@ -15,6 +15,29 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+def menu_list(request):
+    return render(request, 'menu_list.html', context)
+
+
+def menu_list(request):
+    # 현재 날짜를 가져오기
+    today = timezone.now().date()
+    restaurants = Restaurant.objects.all()
+
+    # 일주일 후의 날짜 계산
+    one_week_later = today + timezone.timedelta(days=7)
+
+    # 오늘부터 일주일 동안의 메뉴 가져오기
+    menu_list = Menu.objects.filter(date__range=[today, one_week_later])
+
+    context = {
+        'menu_list': menu_list,
+        'restaurants' : restaurants,
+    }
+
+    return render(request, 'menu_list.html', context)
+
+
 def restaurant_list(request):
     restaurant = Restaurant.objects.all()
     context = {

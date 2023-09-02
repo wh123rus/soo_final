@@ -6,7 +6,7 @@
     <div class="navbar-collapse collapse" id="navbarSupportedContent" style>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item mx-1 btn btn-secondary">
-                <a class="nav-link text-white" href="/menu/">메뉴</a>
+                <a class="nav-link text-white" href={% url 'restaurant:menu_list' %}>메뉴</a>
             </li>
             <li class="nav-item mx-1 btn btn-secondary">
                 <a class="nav-link text-white" href={% url 'restaurant:restaurant_list' %}>식당</a>

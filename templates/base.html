@@ -11,7 +11,7 @@
 <body style="padding-top:90px;">
     {% include 'navbar.html' %}
 
-    <div class="container" style='width:1000px'>
+    <div class="container" style='width:1500px'>
     {% block content %}
     
     {% endblock %}
@@ -51,6 +51,15 @@
         }
         #myform input[type=radio]:checked ~ label{
             text-shadow: 0 0 0 #ffff00 ; /* 마우스 클릭 체크 */
+        }
+        .menu-list {
+            display: flex; /* 가로로 나열하도록 설정 */
+            flex-wrap: wrap; /* 화면 크기에 따라 줄바꿈되도록 설정 */
+        }
+        .menu-item {
+            width: 150px; /* 각 메뉴 아이템의 고정 너비 */
+            margin-right: 20px; /* 아이템 간 간격 조절 */
+            margin-bottom: 20px; /* 줄바꿈을 위한 간격 조절 */
         }
     </style>
 </body>
