@@ -8,17 +8,9 @@ class Restaurant(models.Model):
     restaurant_name = models.CharField(max_length=20)
     location = models.CharField(max_length=100)
     event = models.CharField(max_length=100, blank=True)
-    avg_rating = models.FloatField(default=0)  # 평균 평가를 저장할 필드 추가
     
     def __str__(self):
         return self.restaurant_name
-    
-    def update_average_rating(self):
-        average_rating = Review.objects.filter(restaurant=self).aggregate(Avg('rating'))['rating__avg']
-        if average_rating is not None:
-            average_rating = round(average_rating, 2)
-        self.avg_rating = average_rating
-        self.save()
 
 class Menu(models.Model):
     id = models.AutoField(primary_key=True)
