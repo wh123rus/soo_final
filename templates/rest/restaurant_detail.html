@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+ 
+<div class="container mt-5 text-left" style='width:500px'>
+    <div>
+        <h1 class="font-weight-bold">{{ restaurant.restaurant_name }}</h1>
+        <h3 style="margin-top: 30px;">식당 위치</h3>
+        {{ restaurant.location }}
+        <h3 style="margin-top: 30px;">이벤트</h3>
+        {{ restaurant.event }}
+        <h3 style="margin-top: 30px;">평균 별점 : {{ average_rating }} </h3>
+        
+
+    </div>
+    <br>
+    <br>
+    <h3 style="margin-top: 30px;">리뷰</h3>
+    {% if reviews %}
+        <div>
+            {% for review in reviews %}
+                <p>
+                    {{ review.stars }}
+                </p>
+                <p>{{ review.review_text }}</p>
+            <hr>
+            {% endfor %}
+        </div>
+    {% else %}
+        <br><br><br>
+        <h3>리뷰가 없습니다.</h3>
+    {% endif %}
+    
+    <div class="text-right" style="margin-bottom: 50px;">
+        <a href="{% url 'restaurant:restaurant_review' restaurant.id %}" class="btn btn-success">리뷰 작성하기</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect ,get_object_or_404
 from .models import Restaurant, Menu, Review
 from django.utils import timezone
 from restaurant.forms import RatingForm
@@ -6,50 +6,42 @@ from django.urls import reverse
 from django.db.models import Avg
 
 def home(request):
-    # restaurants = Restaurant.objects.get(id=restaurant_id)
     today = timezone.now().date()
     restaurant_name = Restaurant.objects.all()
     menus = Menu.objects.filter(date=today)
     context = {
-        # 'restaurants': restaurants,
         'restaurant_name' : restaurant_name,
         'menus': menus,
     }
-    avg_ratings = {}
-    for restaurant in restaurant_name:
-        menu = Menu.objects.filter(restaurant=restaurant, date=today)
-        if menu:
-            reviews = Review.objects.filter(restaurant=restaurant)
-            total_rating = 0
-            count = 0
-            for review in reviews:
-                total_rating += review.rating
-                count += 1
-            if count > 0:
-                avg_rating = round(total_rating / count, 2)
-                avg_ratings[restaurant.id] = avg_rating
-            else:
-                avg_ratings[restaurant.id] = 0.0
-        else:
-            avg_ratings[restaurant.id] = 0.0
-
-    context['avg_ratings'] = avg_ratings
     return render(request, 'home.html', context)
 
+def restaurant_list(request):
+    restaurant = Restaurant.objects.all()
+    context = {
+        'restaurants': restaurant,
+    }
+    return render(request, 'rest/restaurant_list.html', context)
 
 def restaurant_detail(request, restaurant_id):
-    restaurant = Restaurant.objects.get(id=restaurant_id)
-    # rating = Review.objects.get(restaurant=restaurants)
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+
+    # 해당 레스토랑의 모든 리뷰 가져오기
     reviews = Review.objects.filter(restaurant=restaurant).order_by('-created_at')
-    
-    for review in reviews:          # 이 부분 추가
+
+    # 각 리뷰의 별점을 별표로 변환하여 'stars' 필드 추가
+    for review in reviews:
         review.stars = '⭐' * int(review.rating)
+
+    # 해당 레스토랑의 별점 평균 계산
+    average_rating = Review.objects.filter(restaurant=restaurant).aggregate(Avg('rating'))['rating__avg']
 
     context = {
         'restaurant': restaurant,
-        'reviews' : reviews,
-        }
-    return render(request, 'restaurant_detail.html', context)
+        'reviews': reviews,
+        'average_rating': average_rating,
+    }
+
+    return render(request, 'rest/restaurant_detail.html', context)
 
 
 def restaurant_review(request, restaurant_id):
@@ -62,7 +54,6 @@ def restaurant_review(request, restaurant_id):
             review.save()
 
             return redirect('restaurant:restaurant_detail', restaurant_id=restaurant_id)
-
     else:
         form = RatingForm()
 
@@ -72,25 +63,4 @@ def restaurant_review(request, restaurant_id):
         'reviews': reviews,
         'form': form,
     }
-    return render(request, 'restaurant_review.html', context)
-
-
-
-# def restaurant_review(request, restaurant_id):
-#     if request.method == 'POST':
-#         form = RatingForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('restaurant_detail', restaurant_id)
-#     else:
-#         form = RatingForm()
-
-#     rating = Restaurant.objects.all()
-    
-#     reviews = Review.objects.all()
-#     context = {
-#         'rating': rating,
-#         'reviews': reviews,
-#         'form': form,
-#     }
-#     return render(request, 'restaurant_review.html', context)
+    return render(request, 'rest/restaurant_review.html', context)

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 style="margin-top: 30px;">식당 목록</h3>
+{% if restaurants %}
+{% for restaurant in restaurants %}
+    <h2 class="font-weight-bold">
+        <a href="{% url 'restaurant:restaurant_detail' restaurant.id %}">
+            {{ restaurant.restaurant_name }}
+        </a>
+    </h2>
+    <hr>
+{% endfor %}
+{% else %}
+{% endif %}
+
+{% endblock %}
