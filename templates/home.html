@@ -11,7 +11,9 @@
                     </a>
                 </h2>
                 <hr>
-                <p class="fs-1" style="padding-bottom: 50px;">{{ menu.menu_name }}</p>
+                <p class="fs-1" style="padding-bottom: 50px;">
+                    {{ menu.menu_name|linebreaksbr }}
+                </p>
             {% endfor %}
         {% else %}
             <h3>오늘 등록된 메뉴가 없습니다.</h3>

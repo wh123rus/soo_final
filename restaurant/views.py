@@ -7,17 +7,14 @@ from django.db.models import Avg
 
 def home(request):
     today = timezone.now().date()
-    restaurant_name = Restaurant.objects.all()
     menus = Menu.objects.filter(date=today)
+    restaurant_name = [menu.restaurant.restaurant_name for menu in menus]
+
     context = {
         'restaurant_name' : restaurant_name,
         'menus': menus,
     }
     return render(request, 'home.html', context)
-
-def menu_list(request):
-    return render(request, 'menu_list.html', context)
-
 
 def menu_list(request):
     # 현재 날짜를 가져오기
