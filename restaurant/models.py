@@ -31,7 +31,6 @@ class Review(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.restaurant.update_average_rating()
 
 class SuggestionBoard(models.Model):
     id = models.AutoField(primary_key=True)
